@@ -1,10 +1,10 @@
-# Formula for llm-memory@latest - LLM统一记忆系统（最新版本）
+# Formula for llm-memory - LLM统一记忆系统
 #
 # 项目地址：https://github.com/XiaoLFeng/llm-memory
 # 维护者：筱锋 (xiao_lfeng)
 # 创建日期：2025-12-05
 
-class LlmMemoryATLatest < Formula
+class LlmMemory < Formula
   desc "大模型统一记忆系统"
   homepage "https://github.com/XiaoLFeng/llm-memory"
   version "0.0.3"

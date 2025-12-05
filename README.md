@@ -31,7 +31,7 @@ brew install <formula-name>@<version>
 **示例**：
 ```bash
 # 安装最新版本的 llm-memory
-brew install llm-memory@latest
+brew install llm-memory
 
 # 安装 llm-memory 0.0.2 版本
 brew install llm-memory@0.0.2
@@ -68,11 +68,11 @@ brew uninstall <formula-name>
 ```
 Formula/
   l/
-    llm-memory@latest.rb   # 最新版本（0.0.3）
+    llm-memory.rb          # 最新版本（0.0.3）
     llm-memory@0.0.2.rb    # 固定版本 0.0.2
   # 未来的项目将按首字母分组
   # s/
-  #   some-tool@latest.rb
+  #   some-tool.rb
   #   some-tool@1.0.0.rb
 ```
 
@@ -91,7 +91,7 @@ Formula/
 1. 在 `Formula/<首字母>/` 目录下创建 Formula 文件
    ```bash
    mkdir -p Formula/m
-   touch Formula/m/my-app@latest.rb
+   touch Formula/m/my-app.rb
    ```
 
 2. 编辑 Formula 文件，填入你的项目信息：
@@ -102,8 +102,8 @@ Formula/
 
 3. 测试 Formula
    ```bash
-   brew install --build-from-source ./Formula/m/my-app@latest.rb
-   brew test my-app@latest
+   brew install --build-from-source ./Formula/m/my-app.rb
+   brew test my-app
    ```
 
 4. 提交并推送到 GitHub

@@ -1,20 +1,20 @@
-# Formula for llm-memory - LLM统一记忆系统
+# Formula for llm-memory@0.0.2 - LLM统一记忆系统（固定版本）
 #
 # 项目地址：https://github.com/XiaoLFeng/llm-memory
 # 维护者：筱锋 (xiao_lfeng)
-# 创建日期：2025-12-05
+# 创建日期：2025-12-06
 
-class LlmMemory < Formula
+class LlmMemoryAT002 < Formula
   desc "大模型统一记忆系统"
   homepage "https://github.com/XiaoLFeng/llm-memory"
-  version "0.0.3"
+  version "0.0.2"
   license "Apache-2.0"
 
   # 支持 macOS 和 Linux
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/XiaoLFeng/llm-memory/releases/download/v#{version}/llm-memory-darwin-arm64"
-      sha256 "a181b516424f0a54da8eb49039011a7eac2b6cc30355e1eaa5892d5595f60c49"
+      sha256 "cec4efb4c29dd9ed73a8c1e4ca49e9b5dfebe8c09b37ac6f85d03ccc46e36ccd"
     else
       url "https://github.com/XiaoLFeng/llm-memory/releases/download/v#{version}/llm-memory-darwin-amd64"
       sha256 "PLACEHOLDER_DARWIN_AMD64_SHA256"
@@ -53,7 +53,11 @@ class LlmMemory < Formula
 
   def caveats
     <<~EOS
-      🎉 llm-memory 已成功安装！
+      🎉 llm-memory@0.0.2 已成功安装！
+
+      ⚠️  注意：这是一个固定版本的 Formula
+      - 此版本不会自动更新到更高版本
+      - 如需最新版本，请使用：brew install llm-memory
 
       快速开始：
         # 查看版本
@@ -86,7 +90,7 @@ class LlmMemory < Formula
     # 测试 1：验证版本号输出
     # 支持 "v0.0.2" 或 "0.0.2" 格式
     version_output = shell_output("#{bin}/llm-memory --version 2>&1")
-    assert_match "0.0.2", version_output
+    assert_match version.to_s, version_output
 
     # 测试 2：验证帮助命令
     # 确保基本命令能正常运行

@@ -21,7 +21,20 @@ brew tap xiao_lfeng/tap
 添加 Tap 后，你可以像安装其他 Homebrew 包一样安装这里的 Formula：
 
 ```bash
+# 安装最新版本
 brew install <formula-name>
+
+# 安装特定版本（使用 @version 语法）
+brew install <formula-name>@<version>
+```
+
+**示例**：
+```bash
+# 安装最新版本的 llm-memory
+brew install llm-memory@latest
+
+# 安装 llm-memory 0.0.2 版本
+brew install llm-memory@0.0.2
 ```
 
 ### 更新 Formula
@@ -42,30 +55,43 @@ brew uninstall <formula-name>
 目前这个 Tap 中包含以下 Formula：
 
 <!-- 在这里列出你的 Formula -->
-| 名称 | 描述 | 版本 | 平台支持 |
-|------|------|------|----------|
-| llm-memory | LLM-Memory - 大模型统一记忆系统 | 0.0.2 | macOS (ARM64/Intel) & Linux (amd64/arm64) |
+| 名称 | 描述 | 最新版本 | 可用版本 | 平台支持 |
+|------|------|----------|----------|----------|
+| llm-memory | LLM-Memory - 大模型统一记忆系统 | 0.0.3 | 0.0.3 (latest), 0.0.2 | macOS (ARM64/Intel) & Linux (amd64/arm64) |
 
 > 提示：当你添加新的 Formula 后，请更新这个列表！
 
+## 目录结构
+
+本 Tap 采用 Homebrew 官方推荐的**首字母分类法**组织 Formula：
+
+```
+Formula/
+  l/
+    llm-memory@latest.rb   # 最新版本（0.0.3）
+    llm-memory@0.0.2.rb    # 固定版本 0.0.2
+  # 未来的项目将按首字母分组
+  # s/
+  #   some-tool@latest.rb
+  #   some-tool@1.0.0.rb
+```
+
+这样的组织方式有以下优点：
+- ✅ 清晰的项目分组（按首字母）
+- ✅ 版本化 Formula 集中管理
+- ✅ 符合 Homebrew 官方规范
+- ✅ 易于扩展和维护
+
 ## 如何编写 Formula？
 
-如果你想为自己的项目创建 Formula，请参考以下资源：
-
-### 示例模板
-
-- **通用模板**：[Formula/template.rb.example](Formula/template.rb.example)
-- **多平台示例**：[Formula/multiplatform-example.rb.example](Formula/multiplatform-example.rb.example)
-
-### 完整指南
-
-查看我们的详细编写指南：[docs/FORMULA_GUIDE.md](docs/FORMULA_GUIDE.md)
+如果你想为自己的项目创建 Formula，请参考 [Homebrew 官方文档](https://docs.brew.sh/Formula-Cookbook)
 
 ### 快速创建步骤
 
-1. 复制模板文件并重命名（去掉 `.example` 后缀）
+1. 在 `Formula/<首字母>/` 目录下创建 Formula 文件
    ```bash
-   cp Formula/template.rb.example Formula/my-app.rb
+   mkdir -p Formula/m
+   touch Formula/m/my-app@latest.rb
    ```
 
 2. 编辑 Formula 文件，填入你的项目信息：
@@ -76,8 +102,8 @@ brew uninstall <formula-name>
 
 3. 测试 Formula
    ```bash
-   brew install --build-from-source ./Formula/my-app.rb
-   brew test my-app
+   brew install --build-from-source ./Formula/m/my-app@latest.rb
+   brew test my-app@latest
    ```
 
 4. 提交并推送到 GitHub

@@ -7,7 +7,7 @@
 class LlmMemory < Formula
   desc "大模型统一记忆系统"
   homepage "https://github.com/XiaoLFeng/llm-memory"
-  version "0.0.2"
+  version "0.0.3"
   license "Apache-2.0"
 
   # 支持 macOS 和 Linux

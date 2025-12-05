@@ -1,0 +1,140 @@
+# 多平台预编译包 Formula 示例
+# 这个示例展示了如何为不同的操作系统和 CPU 架构提供不同的下载包
+# 适用场景：你的应用为 macOS (arm64/x86_64) 和 Linux 提供了不同的预编译版本
+
+class MultiplatformExample < Formula
+  # 基本信息
+  desc "A cross-platform command-line tool with architecture-specific builds"
+  homepage "https://github.com/username/multiplatform-app"
+  version "1.0.0"
+  license "MIT"
+
+  # 📦 多平台下载配置
+  # 根据不同的操作系统和 CPU 架构，提供不同的下载地址和校验和
+
+  # macOS 平台配置
+  on_macos do
+    # Apple Silicon (M1/M2/M3 等 ARM64 架构)
+    if Hardware::CPU.arm?
+      url "https://github.com/username/multiplatform-app/releases/download/v#{version}/app-#{version}-macos-arm64.tar.gz"
+      # 使用命令获取校验和：shasum -a 256 app-1.0.0-macos-arm64.tar.gz
+      sha256 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    # Intel Mac (x86_64 架构)
+    else
+      url "https://github.com/username/multiplatform-app/releases/download/v#{version}/app-#{version}-macos-x86_64.tar.gz"
+      # 使用命令获取校验和：shasum -a 256 app-1.0.0-macos-x86_64.tar.gz
+      sha256 "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    end
+  end
+
+  # Linux 平台配置
+  on_linux do
+    # 目前只支持 x86_64 架构的 Linux
+    url "https://github.com/username/multiplatform-app/releases/download/v#{version}/app-#{version}-linux-x86_64.tar.gz"
+    # 使用命令获取校验和：shasum -a 256 app-1.0.0-linux-x86_64.tar.gz
+    sha256 "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+
+    # 如果你的 Linux 版本也支持 ARM64，可以这样写：
+    # if Hardware::CPU.arm?
+    #   url "https://github.com/username/multiplatform-app/releases/download/v#{version}/app-#{version}-linux-arm64.tar.gz"
+    #   sha256 "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    # else
+    #   url "https://github.com/username/multiplatform-app/releases/download/v#{version}/app-#{version}-linux-x86_64.tar.gz"
+    #   sha256 "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    # end
+  end
+
+  # 依赖关系（可选）
+  # 如果你的应用在不同平台有不同的依赖，可以这样写：
+  # on_macos do
+  #   depends_on "libffi"
+  # end
+  # on_linux do
+  #   depends_on "glibc"
+  # end
+
+  # 安装方法
+  def install
+    # 对于预编译的二进制包，通常只需要复制文件
+
+    # 安装主程序
+    bin.install "multiplatform-app"
+
+    # 如果不同平台的二进制文件名不同，可以这样处理：
+    # if OS.mac?
+    #   bin.install "app-macos" => "multiplatform-app"
+    # elsif OS.linux?
+    #   bin.install "app-linux" => "multiplatform-app"
+    # end
+
+    # 安装库文件（如果有）
+    # lib.install Dir["lib/*"]
+
+    # 安装文档
+    # (share/"doc/multiplatform-app").install "README.md", "LICENSE"
+
+    # 安装配置文件示例
+    # (etc/"multiplatform-app").install "config.example.toml"
+  end
+
+  # 测试方法
+  test do
+    # 测试版本输出
+    assert_match version.to_s, shell_output("#{bin}/multiplatform-app --version")
+
+    # 测试帮助命令
+    system "#{bin}/multiplatform-app", "--help"
+
+    # 根据不同平台进行不同的测试（可选）
+    # if OS.mac?
+    #   # macOS 特定测试
+    #   assert_match "macOS", shell_output("#{bin}/multiplatform-app --info")
+    # elsif OS.linux?
+    #   # Linux 特定测试
+    #   assert_match "Linux", shell_output("#{bin}/multiplatform-app --info")
+    # end
+  end
+end
+
+# 📝 多平台 Formula 编写要点：
+#
+# 1️⃣ URL 命名规范建议：
+#    - macOS ARM64: app-VERSION-macos-arm64.tar.gz
+#    - macOS x86_64: app-VERSION-macos-x86_64.tar.gz
+#    - Linux x86_64: app-VERSION-linux-x86_64.tar.gz
+#    - Linux ARM64: app-VERSION-linux-arm64.tar.gz
+#
+# 2️⃣ 条件判断语法：
+#    - on_macos do ... end       # macOS 平台
+#    - on_linux do ... end       # Linux 平台
+#    - Hardware::CPU.arm?        # ARM 架构（Apple Silicon, ARM64）
+#    - Hardware::CPU.intel?      # Intel 架构（x86_64）
+#    - OS.mac?                   # 是否为 macOS
+#    - OS.linux?                 # 是否为 Linux
+#
+# 3️⃣ SHA256 校验和获取：
+#    对于每个平台的包，都需要单独计算 SHA256：
+#    $ shasum -a 256 app-1.0.0-macos-arm64.tar.gz
+#    $ shasum -a 256 app-1.0.0-macos-x86_64.tar.gz
+#    $ shasum -a 256 app-1.0.0-linux-x86_64.tar.gz
+#
+# 4️⃣ 版本更新流程：
+#    1. 更新 version 字段
+#    2. 下载所有平台的新版本包
+#    3. 计算所有包的 SHA256
+#    4. 更新所有的 sha256 字段
+#    5. 测试安装：brew install --build-from-source ./Formula/xxx.rb
+#
+# 5️⃣ 测试清单：
+#    □ 在 macOS ARM64 (Apple Silicon) 上测试
+#    □ 在 macOS x86_64 (Intel Mac) 上测试（或使用 Rosetta）
+#    □ 在 Linux x86_64 上测试
+#    □ 运行 brew audit --strict 检查语法
+#    □ 运行 brew test 验证测试通过
+#
+# 6️⃣ 常见陷阱：
+#    ⚠️  确保 URL 中的 #{version} 变量正确引用
+#    ⚠️  确保每个平台的 SHA256 对应正确的包
+#    ⚠️  不要在 URL 字符串中使用单引号（应该用双引号）
+#    ⚠️  确保二进制文件有执行权限
+#    ⚠️  压缩包解压后的目录结构应该一致

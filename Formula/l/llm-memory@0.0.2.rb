@@ -14,20 +14,16 @@ class LlmMemoryAT002 < Formula
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/XiaoLFeng/llm-memory/releases/download/v#{version}/llm-memory-darwin-arm64"
-      sha256 "cec4efb4c29dd9ed73a8c1e4ca49e9b5dfebe8c09b37ac6f85d03ccc46e36ccd"
     else
       url "https://github.com/XiaoLFeng/llm-memory/releases/download/v#{version}/llm-memory-darwin-amd64"
-      sha256 "PLACEHOLDER_DARWIN_AMD64_SHA256"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
       url "https://github.com/XiaoLFeng/llm-memory/releases/download/v#{version}/llm-memory-linux-arm64"
-      sha256 "PLACEHOLDER_LINUX_ARM64_SHA256"
     else
       url "https://github.com/XiaoLFeng/llm-memory/releases/download/v#{version}/llm-memory-linux-amd64"
-      sha256 "PLACEHOLDER_LINUX_AMD64_SHA256"
     end
   end
 

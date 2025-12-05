@@ -5,7 +5,7 @@
 # 创建日期：2025-12-05
 
 class LlmMemory < Formula
-  desc "LLM-Memory - 大模型统一记忆系统"
+  desc "大模型统一记忆系统"
   homepage "https://github.com/XiaoLFeng/llm-memory"
   version "0.0.2"
   license "Apache-2.0"
@@ -79,15 +79,14 @@ class LlmMemory < Formula
   test do
     # 测试 1：验证版本号输出
     # 支持 "v0.0.2" 或 "0.0.2" 格式
-    version_output = shell_output("#{bin}/llm-memory --version 2>&1", 0)
+    version_output = shell_output("#{bin}/llm-memory --version 2>&1")
     assert_match "0.0.2", version_output
 
     # 测试 2：验证帮助命令
     # 确保基本命令能正常运行
-    system "#{bin}/llm-memory", "--help"
+    system bin/"llm-memory", "--help"
 
     # 测试 3：验证文件存在且可执行
-    assert_predicate bin/"llm-memory", :exist?
-    assert_predicate bin/"llm-memory", :executable?
+    assert_path_exists bin/"llm-memory"
   end
 end

@@ -10,38 +10,44 @@ class LlmMemory < Formula
   version "0.0.2"
   license "Apache-2.0"
 
-  # 明确声明仅支持 macOS
-  depends_on :macos
-
-  # macOS 平台配置
+  # 支持 macOS 和 Linux
   on_macos do
-    # 检查 CPU 架构
     if Hardware::CPU.arm?
-      # Apple Silicon (M1/M2/M3/M4) 支持
       url "https://github.com/XiaoLFeng/llm-memory/releases/download/v#{version}/llm-memory-darwin-arm64"
       sha256 "a181b516424f0a54da8eb49039011a7eac2b6cc30355e1eaa5892d5595f60c49"
     else
-      # Intel Mac 暂不支持
-      odie <<~EOS
-        ⚠️  llm-memory 当前版本仅支持 Apple Silicon (ARM64) Mac
+      url "https://github.com/XiaoLFeng/llm-memory/releases/download/v#{version}/llm-memory-darwin-amd64"
+      sha256 "PLACEHOLDER_DARWIN_AMD64_SHA256"
+    end
+  end
 
-        你的 Mac 使用的是 Intel 处理器，暂不支持。
-
-        Intel 版本正在开发中，请关注项目更新：
-        https://github.com/XiaoLFeng/llm-memory/releases
-
-        或在 Issue 中反馈你的需求：
-        https://github.com/XiaoLFeng/llm-memory/issues
-      EOS
+  on_linux do
+    if Hardware::CPU.arm?
+      url "https://github.com/XiaoLFeng/llm-memory/releases/download/v#{version}/llm-memory-linux-arm64"
+      sha256 "PLACEHOLDER_LINUX_ARM64_SHA256"
+    else
+      url "https://github.com/XiaoLFeng/llm-memory/releases/download/v#{version}/llm-memory-linux-amd64"
+      sha256 "PLACEHOLDER_LINUX_AMD64_SHA256"
     end
   end
 
   def install
-    # 注意：下载的是单个二进制文件（非压缩包）
-    # 将 llm-memory-darwin-arm64 重命名为 llm-memory 并安装到 bin 目录
-    bin.install "llm-memory-darwin-arm64" => "llm-memory"
+    # 根据操作系统和架构安装对应的二进制文件
+    if OS.mac?
+      if Hardware::CPU.arm?
+        bin.install "llm-memory-darwin-arm64" => "llm-memory"
+      else
+        bin.install "llm-memory-darwin-amd64" => "llm-memory"
+      end
+    elsif OS.linux?
+      if Hardware::CPU.arm?
+        bin.install "llm-memory-linux-arm64" => "llm-memory"
+      else
+        bin.install "llm-memory-linux-amd64" => "llm-memory"
+      end
+    end
 
-    # 确保二进制文件有执行权限（通常 Homebrew 会自动处理）
+    # 确保二进制文件有执行权限
     chmod 0755, bin/"llm-memory"
   end
 
@@ -67,8 +73,8 @@ class LlmMemory < Formula
         - 问题反馈：https://github.com/XiaoLFeng/llm-memory/issues
 
       ⚙️  系统要求：
-        - macOS（仅支持 Apple Silicon）
-        - 预编译二进制已包含所有依赖
+        - macOS (Apple Silicon & Intel) 或 Linux (amd64 & arm64)
+        - 纯 Go 编译，无需额外依赖
 
       💡 提示：
         如果 macOS 阻止运行，请执行：

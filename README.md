@@ -44,7 +44,7 @@ brew uninstall <formula-name>
 <!-- 在这里列出你的 Formula -->
 | 名称 | 描述 | 版本 | 平台支持 |
 |------|------|------|----------|
-| llm-memory | LLM-Memory - 大模型统一记忆系统 | 0.0.2 | macOS ARM64 |
+| llm-memory | LLM-Memory - 大模型统一记忆系统 | 0.0.2 | macOS (ARM64/Intel) & Linux (amd64/arm64) |
 
 > 提示：当你添加新的 Formula 后，请更新这个列表！
 

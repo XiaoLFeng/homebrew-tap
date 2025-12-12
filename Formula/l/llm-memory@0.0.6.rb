@@ -1,13 +1,13 @@
-# Formula for llm-memory - LLM统一记忆系统
+# Formula for llm-memory@0.0.6 - LLM统一记忆系统（固定版本）
 #
 # 项目地址：https://github.com/XiaoLFeng/llm-memory
 # 维护者：筱锋 (xiao_lfeng)
 # 创建日期：2025-12-05
 
-class LlmMemory < Formula
+class LlmMemoryAT006 < Formula
   desc "大模型统一记忆系统"
   homepage "https://github.com/XiaoLFeng/llm-memory"
-  version "0.0.7"
+  version "0.0.6"
   license "Apache-2.0"
 
   # 支持 macOS 和 Linux
@@ -49,7 +49,11 @@ class LlmMemory < Formula
 
   def caveats
     <<~EOS
-      🎉 llm-memory 已成功安装！
+      🎉 llm-memory@0.0.6 已成功安装！
+
+      ⚠️  注意：这是一个固定版本的 Formula
+      - 此版本不会自动更新到更高版本
+      - 如需最新版本，请使用：brew install llm-memory
 
       快速开始：
         # 查看版本

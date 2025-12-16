@@ -3,26 +3,26 @@
 class Xbuilder < Formula
   desc "CLI tool for building and deploying applications with pipeline support"
   homepage "https://github.com/XiaoLFeng/builder-cli"
-  version "0.0.5"
+  version "0.0.6"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/XiaoLFeng/builder-cli/releases/download/v0.0.5/xbuilder-darwin-arm64"
-      sha256 "112abb5d212566a8fb08b5f1010902d512751abe40f96a85f72819ff2ee75a11"
+      url "https://github.com/XiaoLFeng/builder-cli/releases/download/v0.0.6/xbuilder-darwin-arm64"
+      sha256 "8784261d019e2a727d126436fc666017ee474415f75227f837ad7692a87c752f"
     else
-      url "https://github.com/XiaoLFeng/builder-cli/releases/download/v0.0.5/xbuilder-darwin-amd64"
-      sha256 "6e9f5305cc5f97cd1e7f275a21e4d679fd816844b8c8fa83d8ba25041c530793"
+      url "https://github.com/XiaoLFeng/builder-cli/releases/download/v0.0.6/xbuilder-darwin-amd64"
+      sha256 "1fa17a6f86c2bd0c2a4f6ef49874501af849dc93f136b7d8fea24e6018df5788"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/XiaoLFeng/builder-cli/releases/download/v0.0.5/xbuilder-linux-arm64"
-      sha256 "2a4b9f05f79575f25600f2a49c8c564cd3efd6529606e18ed452a62fd1226e71"
+      url "https://github.com/XiaoLFeng/builder-cli/releases/download/v0.0.6/xbuilder-linux-arm64"
+      sha256 "d108b933bff9146aca852613df952cb62fb22b3d9f7678ff3c5c4b3bfd7b6072"
     else
-      url "https://github.com/XiaoLFeng/builder-cli/releases/download/v0.0.5/xbuilder-linux-amd64"
-      sha256 "8b8f73c38b3dc81f04024c025d86e28eaae82e3c907afa211fe3592ab30480dd"
+      url "https://github.com/XiaoLFeng/builder-cli/releases/download/v0.0.6/xbuilder-linux-amd64"
+      sha256 "b36180843075e6a8c158fc5bfef3f2c37fdaead5ca80dcc51375f593732596b7"
     end
   end
 

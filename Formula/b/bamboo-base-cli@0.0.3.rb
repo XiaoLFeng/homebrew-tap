@@ -1,13 +1,13 @@
-# Formula for bamboo-base-cli - LLM统一记忆系统
+# Formula for bamboo-base-cli - 筱工具(Golang) CLI
 #
 # 项目地址：https://github.com/bamboo-services/bamboo-base-go-cli
 # 维护者：筱锋 (xiao_lfeng)
 # 创建日期：2025-12-05
 
 class BambooBaseCliAT007 < Formula
-  desc "大模型统一记忆系统"
+  desc "筱工具(Golang) 命令行工具"
   homepage "https://github.com/bamboo-services/bamboo-base-go-cli"
-  version "0.0.7"
+  version "0.0.3"
   license "Apache-2.0"
 
   # 支持 macOS 和 Linux
@@ -49,7 +49,7 @@ class BambooBaseCliAT007 < Formula
 
   def caveats
     <<~EOS
-      🎉 bamboo-base-cli@0.0.7 已成功安装！
+      🎉 bamboo-base-cli@0.0.3 已成功安装！
 
       ⚠️  注意：这是一个固定版本的 Formula
       - 此版本不会自动更新到更高版本
@@ -62,14 +62,13 @@ class BambooBaseCliAT007 < Formula
         # 查看帮助
         bamboo-base-cli --help
 
-      📝 使用说明：
-        - 数据存储位置：~/.bamboo-base-cli/
-        - 使用 SQLite 作为本地数据库
-        - 支持作为 MCP (Model Context Protocol) 服务器运行
+      📝 项目说明：
+        - bamboo-base-cli 是筱工具(Golang) 相关的命令行工具
+        - 详细能力与用法请参考官方文档
 
       📚 更多信息：
         - 项目主页：https://github.com/bamboo-services/bamboo-base-go-cli
-        - 文档：https://github.com/bamboo-services/bamboo-base-go-cli#readme
+        - 文档：https://doc.x-lf.com/docs/bamboo-base-go
         - 问题反馈：https://github.com/bamboo-services/bamboo-base-go-cli/issues
 
       ⚙️  系统要求：

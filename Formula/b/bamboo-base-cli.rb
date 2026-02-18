@@ -7,7 +7,7 @@
 class BambooBaseCli < Formula
   desc "筱工具(Golang) 命令行工具"
   homepage "https://github.com/bamboo-services/bamboo-base-go-cli"
-  version "0.0.3"
+  version "0.1.0"
   license "Apache-2.0"
 
   # 支持 macOS 和 Linux

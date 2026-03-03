@@ -7,7 +7,7 @@
 class BambooDocument < Formula
   desc "Bamboo 竹简库文档 MCP 服务 - 从 doc.x-lf.com 获取文档信息"
   homepage "https://github.com/bamboo-services/bamboo-document-mcp"
-  version "0.0.5-beta"
+  version "0.0.5"
   license "MIT"
 
   # 支持 macOS 和 Linux

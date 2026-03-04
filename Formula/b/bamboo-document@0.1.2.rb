@@ -1,13 +1,13 @@
-# Formula for bamboo-document - Bamboo 竹简库文档 MCP 服务
+# Formula for bamboo-document@0.1.2 - Bamboo 竹简库文档 MCP 服务（固定版本）
 #
 # 项目地址：https://github.com/bamboo-services/bamboo-document-mcp
 # 维护者：筱锋 (xiao_lfeng)
 # 创建日期：2026-03-04
 
-class BambooDocument < Formula
+class BambooDocumentAT012 < Formula
   desc "Bamboo 竹简库文档 MCP 服务 - 从 doc.x-lf.com 获取文档信息"
   homepage "https://github.com/bamboo-services/bamboo-document-mcp"
-  version "0.1.3"
+  version "0.1.2"
   license "MIT"
 
   # 支持 macOS 和 Linux
@@ -49,7 +49,11 @@ class BambooDocument < Formula
 
   def caveats
     <<~EOS
-      🎉 bamboo-document 已成功安装！
+      🎉 bamboo-document@0.1.2 已成功安装！
+
+      ⚠️  注意：这是一个固定版本的 Formula
+      - 此版本不会自动更新到更高版本
+      - 如需最新版本，请使用：brew install bamboo-document
 
       快速开始：
         # 验证安装
